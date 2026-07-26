@@ -1,0 +1,84 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Agentic Notes",
+  description = "A personal blog about agentic development, AI workflows, and industry news.",
+} = Astro.props;
+
+const navigation = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <div
+      class="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_55%)]"
+    >
+    </div>
+    <header class="border-b border-white/10 bg-slate-950/80 backdrop-blur">
+      <div
+        class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 lg:px-8"
+      >
+        <a
+          href="/"
+          class="flex items-center gap-3 text-sm font-semibold tracking-wide text-slate-100"
+        >
+          <span
+            class="inline-flex size-10 items-center justify-center rounded-full bg-sky-400/15 text-sky-300 ring-1 ring-inset ring-sky-400/30"
+            >AN</span
+          >
+          <span>
+            <span class="block text-xs uppercase tracking-[0.3em] text-sky-300"
+              >Agentic Notes</span
+            >
+            <span class="block text-base text-white"
+              >Personal writing on AI agents, tooling, and news</span
+            >
+          </span>
+        </a>
+
+        <nav class="flex items-center gap-2 text-sm text-slate-300">
+          {
+            navigation.map((item) => (
+              <a
+                href={item.href}
+                class="rounded-full px-4 py-2 transition hover:bg-white/5 hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div
+        class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-slate-400 lg:flex-row lg:items-center lg:justify-between lg:px-8"
+      >
+        <p>Thoughtful writing on AI agents, software workflows, and change.</p>
+        <p>Personal essays and news roundups on agentic development.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { posts, type BlogPost } from "../../data/posts";
+---
+
+<BaseLayout
+    title="Blog"
+    description="Browse personal posts about agentic development, AI tooling, and news."
+>
+    <section class="mx-auto w-full max-w-5xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="max-w-2xl">
+            <p
+                class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300"
+            >
+                Archive
+            </p>
+            <h1 class="mt-4 text-5xl font-semibold tracking-tight text-white">
+                Essays and news on building with AI agents
+            </h1>
+            <p class="mt-6 text-lg leading-8 text-slate-300">
+                A personal archive of writing on agentic development, product
+                design for AI workflows, and the news that shapes modern
+                software tooling.
+            </p>
+        </div>
+
+        <div class="mt-12 space-y-6">
+            {
+                posts.map((post: BlogPost) => (
+                    <article class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:border-sky-300/30 hover:bg-white/7">
+                        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+                            <span>{post.publishDate}</span>
+                            <span class="text-slate-600">•</span>
+                            <span>{post.readingTime} min read</span>
+                            <span class="rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-sky-200">
+                                {post.category}
+                            </span>
+                        </div>
+                        <h2 class="mt-4 text-2xl font-semibold text-white">
+                            {post.title}
+                        </h2>
+                        <p class="mt-4 max-w-3xl text-base leading-8 text-slate-300">
+                            {post.excerpt}
+                        </p>
+                        <a
+                            class="mt-6 inline-flex items-center text-sm font-semibold text-sky-300 transition hover:text-sky-200"
+                            href={`/blog/${post.slug}`}
+                        >
+                            Read article →
+                        </a>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>
