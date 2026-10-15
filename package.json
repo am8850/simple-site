@@ -17,6 +17,6 @@
         "@astrojs/check": "^0.9.9",
         "@tailwindcss/vite": "^4.3.3",
         "tailwindcss": "^4.3.3",
-        "typescript": "^6.0.1"
+        "typescript": "^7.0.2"
     }
 }
